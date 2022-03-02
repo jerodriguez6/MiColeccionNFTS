@@ -1,28 +1,29 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.9;
+pragma solidity >=0.7.0 <0.9.0;
 
 import '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
 
-contract FunkyCrocs is ERC721Enumerable, Ownable {  
+contract KungFuKoalas is ERC721Enumerable, Ownable {  
     using Address for address;
     
-    // Starting and stopping sale, presale and whitelist
-    bool public saleActive = false;
+    // Starting and stopping sale, presale and whitelist  
     bool public whitelistActive = false;
     bool public presaleActive = false;
+    bool public saleActive = false;
 
     // Reserved for the team, customs, giveaways, collabs and so on.
-    uint256 public reserved = 150;
+    uint256 public reserved = 50;
 
     // Price of each token
-    uint256 public initial_price = 0.04 ether;
+    uint256 public initial_price = 0.2 ether;
     uint256 public price;
 
     // Maximum limit of tokens that can ever exist
-    uint256 public constant MAX_SUPPLY = 10000;
-    uint256 public constant MAX_PRESALE_SUPPLY = 500;
     uint256 public constant MAX_MINT_PER_TX = 20;
+    uint256 public constant MAX_PRESALE_SUPPLY = 100;
+    uint256 public constant MAX_SUPPLY = 8000;
+    
 
     // The base link that leads to the image / video of the token
     string public baseTokenURI = "https://api.funkycrocs.io/";
@@ -35,7 +36,7 @@ contract FunkyCrocs is ERC721Enumerable, Ownable {
     // List of addresses that have a number of reserved tokens for whitelist
     mapping (address => uint256) public whitelistReserved;
 
-    constructor () ERC721 ("Funky Crocs", "FNK") {
+    constructor () ERC721 ("KungFu Koalas", "KFK") {
         price = initial_price;
     }
 
